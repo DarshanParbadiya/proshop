@@ -1,26 +1,32 @@
 import React from "react";
 import { FaCartPlus, FaUser } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <>
-      <div className="px-28 shadow-xl">
+      <div className="px-28 shadow-md">
         <div className="navbar  mb-8 flex flex-row justify-between ">
           <div>
-            <a class="btn btn-ghost normal-case text-xl" href="/">
+            <Link class="btn btn-ghost normal-case text-xl" to={"/"}>
               ProShop
-            </a>
+            </Link>
           </div>
 
           <div className="flex justify-center space-x-5">
-            <div className="flex group justify-center items-center space-x-1">
-              <FaCartPlus className=" group-hover:scale-125 duration-500  " />
-              <div className=" group-hover:text-sky-200 ">Cart</div>
-            </div>
-            <div className="flex group justify-center items-center space-x-1">
-              <FaUser className=" group-hover:scale-125 duration-500  " />
-              <div className=" group-hover:text-sky-200 ">Signin</div>
-            </div>
+            <Link to={"/cart"}>
+              <div className="flex hover:font-bold group justify-center items-center space-x-1">
+                <FaCartPlus className=" group-hover:scale-125 duration-500  " />
+                <div className=" group-hover:text-lg duration-300  ">Cart</div>
+              </div>
+            </Link>
+
+            <Link to={"/login"}>
+              <div className="flex hover:font-bold group justify-center items-center space-x-1">
+                <FaUser className=" group-hover:scale-125 duration-500  " />
+                <div className=" group-hover:text-lg  duration-300">Signin</div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
