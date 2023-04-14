@@ -1,10 +1,18 @@
-import React from 'react'
+import React from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import HomeScreen from "./screens/HomeScreen";
+
 const App = () => {
   return (
-     <>
-     <h1>Welcome to the app</h1>
-     </>
+    <div>
+      <Header />
+      <main className=" px-36 ">
+        <HomeScreen />
+      </main>
+      <Footer />
+    </div>
   );
-}
+};
 
 export default App;
