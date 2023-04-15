@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
-      <div className="px-28 shadow-md">
+      <div className=" px-5  lg:px-28 shadow-md">
         <div className="navbar  mb-8 flex flex-row justify-between ">
           <div>
             <Link class="btn btn-ghost normal-case text-xl" to={"/"}>

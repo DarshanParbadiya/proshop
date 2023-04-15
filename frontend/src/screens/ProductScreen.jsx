@@ -1,26 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import products from "../products";
 import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
 import { FaBackward } from "react-icons/fa";
+import axios from "axios";
 
 const ProductScreen = () => {
+  const [product, setProduct] = useState({});
   const prod = useParams();
 
-  const product = products.find((p) => p._id === prod.id);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const { data } = await axios.get(`/api/products/${prod.id}`);
+      setProduct(data);
+    };
 
-  //   _id: '1',
-  //   name: 'Airpods Wireless Bluetooth Headphones',
-  //   image: '/images/airpods.jpg',
-  //   description:
-  //     'Bluetooth technology lets you connect it with compatible devices wirelessly High-quality AAC audio offers immersive listening experience Built-in microphone allows you to take calls while working',
-  //   brand: 'Apple',
-  //   category: 'Electronics',
-  //   price: 89.99,
-  //   countInStock: 10,
-  //   rating: 4.5,
-  //   numReviews: 12,
+    fetchProduct();
+  }, []);
 
   return (
     <div>
@@ -33,13 +29,13 @@ const ProductScreen = () => {
           </div>
         </Link>
         {/* main container */}
-        <div className="flex mt-5 shadow-2xl p-8 rounded-lg space-x-6">
-          <div className="w-1/2  flex justify-center items-start">
+        <div className="flex flex-col md:flex-row mt-5 shadow-2xl p-8 rounded-lg space-x-6">
+          <div className="w-full md: w-1/2  flex justify-center items-start">
             <img className="w-[450px] rounded-md" src={product.image} alt="" />
           </div>
 
           {/* right side of product  */}
-          <div className="w-1/2 flex flex-col space-y-3">
+          <div className="w-full md: w-1/2 flex flex-col space-y-3">
             <div className="border-b pb-5">
               <div className="text-3xl mb-2">{product.name}</div>
               <Rating rating={product.rating} numReviews={product.numReviews} />

@@ -10,7 +10,7 @@ const App = () => {
   return (
     <Router>
       <Header />
-      <main className=" px-36 ">
+      <main className=" px-5 lg:px-36  ">
         <Routes>
           <Route path="/" element={<HomeScreen />} exact />
           <Route path="/product/:id" element={<ProductScreen />} />
