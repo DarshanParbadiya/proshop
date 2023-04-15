@@ -1,7 +1,9 @@
 const express = require("express");
 const products = require("./data/products");
+const dotenv = require("dotenv");
 const app = express();
 
+dotenv.config();
 app.get("/", (req, res) => {
   res.send("service is running....");
 });
@@ -15,4 +17,5 @@ app.get("/api/products/:id", (req, res) => {
   res.json(product);
 });
 
-app.listen(5000, console.log("server started on 5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(5000, console.log(`server started on ${PORT}`));

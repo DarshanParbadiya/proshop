@@ -8,7 +8,7 @@ const Header = () => {
       <div className=" px-5  lg:px-28 shadow-md">
         <div className="navbar  mb-8 flex flex-row justify-between ">
           <div>
-            <Link class="btn btn-ghost normal-case text-xl" to={"/"}>
+            <Link className="btn btn-ghost normal-case text-xl" to={"/"}>
               ProShop
             </Link>
           </div>
