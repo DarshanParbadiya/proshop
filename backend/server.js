@@ -7,11 +7,6 @@ import productRoutes from "./routes/productRoutes.js";
 
 const app = express();
 
-app.use((req, res, next) => {
-  console.log("hello");
-  next();
-});
-
 dotenv.config();
 
 connectDB();
@@ -20,7 +15,21 @@ app.get("/", (req, res) => {
   res.send("service is running....");
 });
 
+app.use((req,res,next)=>{
+  const error = new Error(`Not Found - ${originalUrl}`)
+  res.status(404)
+  next(error)
+})
+
 app.use("/api/products", productRoutes);
+app.use((err, req, res, next) => {
+  const statuscode = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(statuscode);
+  res.json({
+    message: err.message,
+    stack: process.env.NODE_ENV === "production " ? null : err.stack,
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(5000, console.log(`server is running on port ${PORT}`.yellow.bold));
